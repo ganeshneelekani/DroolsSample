@@ -14,13 +14,19 @@ public class DroolsTest {
             // load up the knowledge base
             KieServices ks = KieServices.Factory.get();
             KieContainer kContainer = ks.getKieClasspathContainer();
-            KieSession kSession = kContainer.newKieSession("ksession-rules");
+          //  KieSession kSession = kContainer.newKieSession("ksession-rules");
+            
+          	KieSession kSession = kContainer.newKieSession("ksession-process");
  
             // go !
             Account account = new Account(200);
             account.withdraw(50);
             kSession.insert(account);
-            kSession.fireAllRules();
+           
+            
+            kSession.startProcess("SampleFlow",null);
+            int fired = kSession.fireAllRules();
+            System.out.println("Number of Rules executed = " + fired);
         } catch (Throwable t) {
             t.printStackTrace();
         }

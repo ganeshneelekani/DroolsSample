@@ -1,5 +1,6 @@
 package demo
 import com.sample.model.Account
+
 rule "accountBalanceAtLeast"
   when
   $account : Account( balance < 100 )
@@ -9,6 +10,7 @@ end
 	
 	
 rule "accountBalanceAtLeastWithDraw"
+ruleflow-group "helloworldgroup"
   when
   $account : Account( balance > 100 )
   then
