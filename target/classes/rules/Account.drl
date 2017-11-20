@@ -1,0 +1,17 @@
+package demo
+import com.sample.model.Account
+rule "accountBalanceAtLeast"
+  when
+  $account : Account( balance < 100 )
+  then
+  System.out.println("Warning! money running out!");
+end
+	
+	
+rule "accountBalanceAtLeastWithDraw"
+  when
+  $account : Account( balance > 100 )
+  then
+  System.out.println(" WithDraw");
+end
+	
